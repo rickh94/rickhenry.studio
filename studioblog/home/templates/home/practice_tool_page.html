@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% block body_class %}{% endblock %}
+{% block content %}
+    <main id="main-content"
+          class="container max-w-5xl mx-auto px-4 my-4 flex-1">
+        <a href="{{ page.get_parent.url }}"
+           class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline">← Back to Tools</a>
+        <header class="my-2">
+            <h2 class="font-cardo text-4xl font-bold text-[#0f1020]">{{ page.title }}</h2>
+            <p class="italic text-neutral-800">{{ page.date }}</p>
+            {% with tags=page.tags.all %}
+                {% if tags %}
+                    <div class="text-[#0f1020] flex">
+                        <span class="mr-2">Posted in:</span>
+                        <ul class="list-none inline space-x-1">
+                            {% for tag in tags %}
+                                <li class="inline">
+                                    <a href="{% slugurl 'tags' %}?tag={{ tag }}"
+                                       class="underline hover:underline-offset-2">{{ tag }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <div class="text-lg">{{ page.short_description|richtext }}</div>
+            <div class="flex my-2">
+                <a class="text-2xl block border-2 py-1 px-2 font-bold bg-[#dff0f7] hover:text-[#586F7C] border-[#0f1020] text-[#0f10200] shadow-sm hover:shadow hover:border-[#586F7C] text-black"
+                   href="{{ page.location }}"
+                   target="_blank"
+                   rel="noopener noreferrer">Try It Out</a>
+            </div>
+        </header>
+        {# TODO: add demo video or screen shots or both #}
+        <div class="prose prose-neutral lg:prose-md">{{ page.long_description|richtext }}</div>
+    </main>
+{% endblock content %}

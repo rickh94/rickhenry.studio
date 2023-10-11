@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags customfilters %}
+{% block content %}
+    <main id="main-content"
+          class="container max-w-5xl mx-auto px-4 my-4 flex-1">
+        <section id="posts">
+            <header class="flex">
+                <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">
+                    Showing pages tagged "{{ request.GET.tag }}"
+                </h2>
+            </header>
+            <!-- TODO: add back to all posts button -->
+            <ul id="post-list"
+                class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+                {% for blogpage in page_obj %}
+                    <li class="block border cursor-pointer bg-[#eff8fb] hover:border-[#586F7C] border-[#0f1020] shadow-[#e6c0e9] hover:shadow-[#e6c0e9] shadow-sm hover:shadow group px-4 py-3 space-y-1">
+                        <a href="{% pageurl blogpage %}">
+                            <h3 class="text-2xl text-[#0f1020] font-bold font-cardo">{{ blogpage.title }}</h3>
+                            <p class="text-[#0f1020] italic text-sm">
+                                Posted on: <time datetime="{{ post.date }}">{{ blogpage.specific.date }}</time>
+                            </p>
+                        </a>
+                        <p class="text-[#0f1020]">
+                            {{ blogpage.specific.intro }}
+                            <a href="{% pageurl blogpage %}"
+                               class="underline hover:underline-offset-2">Keep Reading…</a>
+                        </p>
+                        {% with tags=blogpage.specific.tags.all %}
+                            {% if tags %}
+                                <div class="text-[#0f1020] flex">
+                                    <span class="mr-2">Posted in:</span>
+                                    <ul class="list-none inline space-x-1">
+                                        {% for tag in tags %}
+                                            <li class="inline">
+                                                <a href="{% slugurl 'tags' %}?tag={{ tag }}"
+                                                   class="underline hover:underline-offset-2">{{ tag }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                {% empty %}
+                    <p>No results found</p>
+                {% endfor %}
+            </ul>
+        </section>
+        {% pagination_links %}
+    </main>
+{% endblock %}

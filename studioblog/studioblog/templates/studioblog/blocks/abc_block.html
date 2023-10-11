@@ -1,0 +1,25 @@
+<div id="{{ value.id }}" class="text-black"></div>
+<script data-viewer-id="{{ value.id }}" data-notes="{{ value.notes }}" id="script-{{ value.id }}" data-width="{% if value.width %}{{ value.width }}{% else %}540{% endif %}">
+  ABCJS.renderAbc(
+    document.currentScript.dataset.viewerId,
+    document.currentScript.dataset.notes,
+    {
+      scale: 1,
+      add_classes: true,
+      paddingleft: 0,
+      paddingright: 0,
+      paddingbottom: 0,
+      paddingtop: 0,
+      viewportHorizontal: true,
+      scrollHorizontal: true,
+      staffwidth: document.currentScript.dataset.width,
+      wrap: {
+        minSpacing: 1.4,
+        maxSpacing: 2.7,
+        preferredMeasuresPerLine: 4,
+      },
+      responsive: "resize",
+    },
+  );
+</script>
+{# vim: se ft=htmldjango : #}
