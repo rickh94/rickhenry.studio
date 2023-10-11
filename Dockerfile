@@ -44,4 +44,4 @@ COPY --from=builder1 /studioblog/studioblog/static/css/studioblog.css /app/studi
 
 RUN python manage.py collectstatic --noinput --clear
 
-python manage.py migrate --noinput; CMD gunicorn studioblog.wsgi:application
+CMD python manage.py migrate --noinput; CMD gunicorn studioblog.wsgi:application
