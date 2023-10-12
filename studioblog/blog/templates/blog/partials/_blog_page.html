@@ -1,0 +1,37 @@
+{% load wagtailcore_tags %}
+<main id="main-content"
+      class="container max-w-5xl mx-auto px-4 my-4 flex-1">
+    <a href="{{ page.get_parent.url }}"
+       hx-get="{{ page.get_parent.url }}"
+       hx-target="#main-content"
+       hx-swap="outerHTML swap:300ms"
+       hx-push-url="{{ page.get_parent.url }}"
+       class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline">← Back to Posts</a>
+    <header class="my-2">
+        <h2 class="font-cardo text-4xl font-bold text-[#0f1020]">{{ page.title }}</h2>
+        <p class="italic text-neutral-800">{{ page.date }}</p>
+        {% with tags=page.tags.all %}
+            {% if tags %}
+                <div class="text-[#0f1020] flex">
+                    <span class="mr-2">Posted in:</span>
+                    <ul class="list-none inline space-x-1">
+                        {% for tag in tags %}
+                            <li class="inline">
+                                <a href="{% slugurl 'tags' %}?tag={{ tag }}"
+                                   hx-get="{% slugurl 'tags' %}?tag={{ tag }}"
+                                   hx-target="#main-content"
+                                   hx-swap="outerHTML swap:300ms"
+                                   hx-push-url="{% slugurl 'tags' %}?tag={{ tag }}"
+                                   class="underline hover:underline-offset-2">{{ tag }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+    </header>
+    <div class="prose prose-neutral lg:prose-lg">
+        {{ page.intro|richtext }}
+        {% include_block page.body %}
+    </div>
+</main>

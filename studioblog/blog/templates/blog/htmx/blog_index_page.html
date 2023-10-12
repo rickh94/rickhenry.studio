@@ -1,8 +1,5 @@
-{% extends "base.html" %}
+{% extends "base_htmx.html" %}
 {% load wagtailcore_tags customfilters %}
-{% block title %}
-    {{ page.title }}
-{% endblock title %}
 {% block content %}
     {% include "blog/partials/_blog_index_page.html" %}
 {% endblock content %}

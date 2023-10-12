@@ -1,0 +1,13 @@
+{% load customfilters %}
+<title hx-swap-oob="true">
+    {% block title %}
+        {% if page.title %}
+            {{ page.title }}
+        {% else %}
+            Rick's Music Stuff
+        {% endif %}
+    {% endblock title %}
+</title>
+{% block content %}
+{% endblock content %}
+{% if messages %}{% endif %}

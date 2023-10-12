@@ -41,13 +41,14 @@
               href="{% static 'icons/favicon-16x16.png' %}">
         <link rel="manifest" href="{% static 'icons/site.webmanifest' %}">
         <script src="{% static 'js/abcjs-basic-min.js' %}"></script>
+        <script src="{% static 'js/htmx.min.js' %}" defer></script>
     </head>
     <body class="{% block body_class %}{% endblock %} h-full bg-gradient-to-br from-white to-[#FAEEFC] antialiased min-h-screen flex flex-col">
         {% wagtailuserbar %}
         <a tabindex="0"
            href="#main-content"
            role="button"
-           class="z-20 absolute opacity-100 top-0 left-0 ml-2 mt-2 -translate-y-14 transition duration-200 ease-out focus:translate-y-0 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium text-white bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-violet-900 focus:ring-white z-200">
+           class="z-20 absolute opacity-100 top-0 left-0 ml-2 mt-2 -translate-y-14 transition duration-200 ease-out focus:translate-y-0 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium text-black bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-violet-900 focus:ring-white z-200">
             Skip to Content
         </a>
         <header class="max-w-6xl container mx-auto mt-8 sm:mt-16">
@@ -58,20 +59,46 @@
                 </p>
             </div>
             <nav class="flex justify-center w-full my-2 sm:my-4 border-b-2 border-t-2 border-[#e4a8f0] font-medium">
-                {# TODO: make nav dynamic or just working #}
-                {# TODO: give elements focus effect #}
-                <ul class="list-none w-full flex justify-around text-xl text-[#ad40b5]">
+                <ul class="list-none px-4 w-full grid grid-cols-2 sm:flex justify-around text-xl text-[#ad40b5]">
                     <li class="hover:text-[#0f1020]">
-                        <a href="/">Home</a>
+                        <a href="/"
+                           hx-get="/"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="true"
+                           class="focus:outline-none rounded focus:ring-1 focus:ring-offset-transparent focus:ring-offset-1 focus:ring-[#0f1020] focus:text-[#0f1020]">Home</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
-                        <a href="/blog">Blog</a>
+                        <a href="/blog"
+                           class="focus:outline-none rounded focus:ring-1 focus:ring-offset-transparent focus:ring-offset-1 focus:ring-[#0f1020] focus:text-[#0f1020]"
+                           hx-get="/blog"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="true">Blog</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
-                        <a href="/practice-tools">Practice Tools</a>
+                        <a href="/practice-tools"
+                           hx-get="/practice-tools"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="true"
+                           class="focus:outline-none rounded focus:ring-1 focus:ring-offset-transparent focus:ring-offset-1 focus:ring-[#0f1020] focus:text-[#0f1020]">Practice Tools</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
-                        <a href="{% url 'contact' %}">Contact Me</a>
+                        <a href="/about"
+                           hx-get="/about"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="true"
+                           class="focus:outline-none rounded focus:ring-1 focus:ring-offset-transparent focus:ring-offset-1 focus:ring-[#0f1020] focus:text-[#0f1020]">About</a>
+                    </li>
+                    <li class="hover:text-[#0f1020]">
+                        <a href="{% url 'contact' %}"
+                           hx-get="{% url 'contact' %}"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="true"
+                           class="focus:outline-none rounded focus:ring-1 focus:ring-offset-transparent focus:ring-offset-1 focus:ring-[#0f1020] focus:text-[#0f1020]">Contact Me</a>
                     </li>
                 </ul>
             </nav>

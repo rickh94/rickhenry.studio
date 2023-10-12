@@ -3,14 +3,15 @@ from django.core.paginator import Paginator
 from django.db import models
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-
+from wagtail import blocks
 from wagtail.admin.panels import FieldPanel
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page, ParentalKey
 from wagtail.search import index
 from wagtail.search.backends import get_search_backend
 
-# TODO: add htmx in the usual way
+from studioblog.blocks import ABCBlock, AudioBlock
 
 
 class HomePage(Page):
@@ -29,6 +30,36 @@ class HomePage(Page):
             featured=True
         )
         return context
+
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "home/htmx/home_page.html"
+        else:
+            return "home/home_page.html"
+
+
+class AboutPage(Page):
+    body = StreamField(
+        [
+            ("heading", blocks.CharBlock(classname="title")),
+            ("paragraph", blocks.RichTextBlock()),
+            ("image", ImageChooserBlock()),
+            ("abcnotes", ABCBlock()),
+            ("audio", AudioBlock()),
+        ],
+        blank=True,
+        use_json_field=True,
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel("body"),
+    ]
+
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "home/htmx/about_page.html"
+        else:
+            return "home/about_page.html"
 
 
 class PracticeToolTag(TaggedItemBase):
@@ -60,6 +91,12 @@ class PracticeToolPage(Page):
         index.SearchField("long_description"),
     ]
 
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "home/htmx/practice_tool_page.html"
+        else:
+            return "home/practice_tool_page.html"
+
 
 class PracticeToolIndexPage(Page):
     intro = RichTextField(blank=True)
@@ -87,12 +124,19 @@ class PracticeToolIndexPage(Page):
 
         return context
 
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "home/htmx/practice_tool_index_page.html"
+        else:
+            return "home/practice_tool_index_page.html"
 
-# TODO: make this pretty
+
 class PracticeToolTagIndexPage(Page):
+    paginate_by = 20
+
     def get_context(self, request):
         tag = request.GET.get("tag")
-        practice_tools = PracticeToolPage.objects.filter(tags__name=tag)
+        practice_tools = PracticeToolPage.objects.live().filter(tags__name=tag)
 
         context = super().get_context(request)
 
@@ -103,3 +147,9 @@ class PracticeToolTagIndexPage(Page):
         context["tag"] = tag
 
         return context
+
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "home/htmx/practice_tool_tag_index_page.html"
+        else:
+            return "home/practice_tool_tag_index_page.html"

@@ -15,6 +15,7 @@ webauthn = "^1.11.0"
 django-htmx = "^1.16.0"
 django-stubs = "^4.2.4"
 django-stubs-ext = "^4.2.2"
+opencv-python = "^4.8.1.78"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.9.1"

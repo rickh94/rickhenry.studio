@@ -1,0 +1,129 @@
+{% load static wagtailcore_tags %}
+<main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
+    <section id="welcome" class="px-4 py-2 my-6">
+        <div class="flex">
+            <h2 class="font-cardo text-3xl text-[#0f1020] pr-3 font-bold mb-2">{{ page.intro_title }}</h2>
+        </div>
+        <p class="text-lg mx-2">{{ page.intro|richtext }}</p>
+    </section>
+    <section id="posts">
+        <header class="flex">
+            <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Recent Posts</h2>
+        </header>
+        <ul id="post-list"
+            class="list-none grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
+            {% for post in recent_posts %}
+                <li class="block border bg-[#eff8fb] cursor-pointer hover:border-[#586F7C] border-[#0f1020] shadow-[#e6c0e9] hover:shadow-[#e6c0e9] shadow-sm hover:shadow group px-4 py-3 space-y-1">
+                    <a id="post-{{ post.id }}"
+                       href="{% pageurl post %}"
+                       hx-get="{% pageurl post %}"
+                       hx-target="#main-content"
+                       hx-swap="outerHTML swap:300ms"
+                       hx-push-url="{% pageurl post %}">
+                        <h3 class="text-2xl text-[#0f1020] font-bold font-cardo">{{ post.title }}</h3>
+                        <p class="text-[#0f1020] italic text-sm">
+                            Posted on:
+                            <time datetime="{{ post.date }}">{{ post.specific.date }}</time>
+                        </p>
+                    </a>
+                    <p class="text-[#0f1020]">
+                        {{ post.specific.intro }}
+                        <a href="{% pageurl post %}"
+                           class="underline hover:underline-offset-2"
+                           hx-get="{% pageurl post %}"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="{% pageurl post %}">Keep Reading…</a>
+                    </p>
+                    {% with tags=post.specific.tags.all %}
+                        {% if tags %}
+                            <div class="text-[#0f1020] flex">
+                                <span class="mr-2">Posted in:</span>
+                                <ul class="list-none inline space-x-1">
+                                    {% for tag in tags %}
+                                        <li class="inline">
+                                            <a href="{% slugurl 'tags' %}?tag={{ tag }}"
+                                               hx-get="{% slugurl 'tags' %}?tag={{ tag }}"
+                                               hx-target="#main-content"
+                                               hx-swap="outerHTML swap:300ms"
+                                               hx-push-url="{% slugurl 'tags' %}?tag={{ tag }}"
+                                               class="underline hover:underline-offset-2">{{ tag }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="flex w-full justify-center my-4">
+            <a href="{% slugurl 'blog' %}"
+               hx-get="{% slugurl 'blog' %}"
+               hx-target="#main-content"
+               hx-swap="outerHTML swap:300ms"
+               hx-push-url="{% slugurl 'blog' %}"
+               class="block text-xl border-2 bg-[#dff0f7] shadow-sm hover:shadow font-medium hover:border-[#586F7C] px-4 py-2 hover:text-[#586F7C] border-[#0f1020] text-[#0f1020]">
+                View More Posts
+            </a>
+        </div>
+    </section>
+    <section id="practice-tools">
+        <header class="flex">
+            <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
+        </header>
+        <ul id="tool-list"
+            class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+            {% for tool in featured_tools %}
+                <li class="block border cursor-pointer bg-[#eff8fb] hover:border-[#586F7C] border-[#0f1020] shadow-[#e6c0e9] hover:shadow-[#e6c0e9] shadow-sm hover:shadow group px-4 py-3 space-y-1">
+                    <a href="{% pageurl tool %}"
+                       hx-get="{% pageurl tool %}"
+                       hx-target="#main-content"
+                       hx-swap="outerHTML swap:300ms"
+                       hx-push-url="{% pageurl tool %}">
+                        <h3 class="text-2xl text-[#0f1020] font-bold font-cardo">{{ tool.title }}</h3>
+                    </a>
+                    <p class="text-[#0f1020]">
+                        {{ tool.specific.short_description|richtext }}
+                        <a href="{% pageurl tool %}"
+                           class="underline hover:underline-offset-2"
+                           hx-get="{% pageurl tool %}"
+                           hx-target="#main-content"
+                           hx-swap="outerHTML swap:300ms"
+                           hx-push-url="{% pageurl tool %}">Learn More…</a>
+                    </p>
+                    {% with tags=tool.specific.tags.all %}
+                        {% if tags %}
+                            <div class="text-[#0f1020] flex">
+                                <span class="mr-2">Tags:</span>
+                                <ul class="list-none inline space-x-1">
+                                    {% for tag in tags %}
+                                        <li class="inline">
+                                            <a href="{% slugurl 'tooltags' %}?tag={{ tag }}"
+                                               hx-get="{% slugurl 'tooltags' %}?tag={{ tag }}"
+                                               hx-target="#main-content"
+                                               hx-swap="outerHTML swap:300ms"
+                                               hx-push-url="{% slugurl 'tooltags' %}?tag={{ tag }}"
+                                               class="underline hover:underline-offset-2">{{ tag }}</a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                </li>
+            {% endfor %}
+        </ul>
+        <!-- TODO: tweak hover effect, maybe add focus effect -->
+        <div class="flex w-full justify-center my-4">
+            <a href="{% slugurl 'practice-tools' %}"
+               hx-get="{% slugurl 'practice-tools' %}"
+               hx-target="#main-content"
+               hx-swap="outerHTML swap:300ms"
+               hx-push-url="{% slugurl 'practice-tools' %}"
+               class="block text-xl border-2 bg-[#dff0f7] shadow-sm hover:shadow font-medium hover:border-[#586F7C] px-4 py-2 hover:text-[#586F7C] border-[#0f1020] text-[#0f1020]">
+                View More Tools
+            </a>
+        </div>
+    </section>
+</main>

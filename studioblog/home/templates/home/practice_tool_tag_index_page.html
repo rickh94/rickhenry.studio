@@ -4,12 +4,13 @@
     <main id="main-content"
           class="container max-w-5xl mx-auto px-4 my-4 flex-1">
         <section id="posts">
+            <a href="{{ page.get_parent.url }}"
+               class="my-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline">← Back to All Practice Tools</a>
             <header class="flex">
                 <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">
                     Showing tools tagged "{{ request.GET.tag }}"
                 </h2>
             </header>
-            <!-- TODO: add back to all posts button -->
             <ul id="post-list"
                 class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
                 {% for tool in page_obj %}
@@ -21,7 +22,7 @@
                             </p>
                         </a>
                         <p class="text-[#0f1020]">
-                            {{ tool.specific.short_description }}
+                            {{ tool.specific.short_description|richtext }}
                             <a href="{% pageurl tool %}" class="underline hover:underline-offset-2">Learn More…</a>
                         </p>
                         {% with tags=tool.specific.tags.all %}

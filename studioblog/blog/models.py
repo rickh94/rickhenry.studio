@@ -3,8 +3,6 @@ from django.db import models
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey
 from taggit.models import TaggedItemBase
-
-from studioblog.blocks import ABCBlock, AudioBlock
 from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
@@ -12,6 +10,8 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.search import index
 from wagtail.search.backends import get_search_backend
+
+from studioblog.blocks import ABCBlock, AudioBlock
 
 
 class BlogIndexPage(Page):
@@ -39,6 +39,12 @@ class BlogIndexPage(Page):
 
         return context
 
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "blog/htmx/blog_index_page.html"
+        else:
+            return "blog/blog_index_page.html"
+
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -46,7 +52,6 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
-# TODO: create video, audio, and abcjs blocks
 class BlogPage(Page):
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
@@ -77,11 +82,15 @@ class BlogPage(Page):
         ),
         FieldPanel("intro"),
         FieldPanel("body"),
-        # InlinePanel("gallery_images", label="Gallery images"),
     ]
 
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "blog/htmx/blog_page.html"
+        else:
+            return "blog/blog_page.html"
 
-# TODO: make this pretty
+
 class BlogTagIndexPage(Page):
     paginate_by = 20
 
@@ -99,17 +108,8 @@ class BlogTagIndexPage(Page):
 
         return context
 
-
-# class BlogPageGalleryImage(Orderable):
-#     page = ParentalKey(
-#         BlogPage, on_delete=models.CASCADE, related_name="gallery_images"
-#     )
-#     image = models.ForeignKey(
-#         "wagtailimages.Image", on_delete=models.CASCADE, related_name="+"
-#     )
-#     caption = models.CharField(blank=True, max_length=250)
-#
-#     panels = [
-#         FieldPanel("image"),
-#         FieldPanel("caption"),
-#     ]
+    def get_template(self, request, *args, **kwargs):
+        if request.htmx and not request.htmx.boosted:
+            return "blog/htmx/blog_tag_index_page.html"
+        else:
+            return "blog/blog_tag_index_page.html"
