@@ -75,7 +75,7 @@
 
 #main-content.htmx-swapping {
   opacity: 0;
-  transition: opacity 200ms ease-out;
+  transition: opacity 100ms ease-out;
 }
 
 #main-content.htmx-added {
@@ -84,7 +84,7 @@
 
 #main-content {
   opacity: 1;
-  transition: opacity 200ms ease-in;
+  transition: opacity 100ms ease-in;
 }
 
 .scale-in {
