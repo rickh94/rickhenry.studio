@@ -8,7 +8,7 @@
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="/practice-tools"
-               class="my-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline">← Back to All Practice Tools</a>
+               class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-[#ad40b5] px-0.5">← Back to All Practice Tools</a>
         {% endif %}
         <header class="flex">
             <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
@@ -42,43 +42,7 @@
         <ul id="tool-list"
             class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
             {% for tool in page_obj %}
-                <li class="block border cursor-pointer bg-[#eff8fb] hover:border-[#586F7C] border-[#0f1020] shadow-[#e6c0e9] hover:shadow-[#e6c0e9] shadow-sm hover:shadow group px-4 py-3 space-y-1">
-                    <a href="{% pageurl tool %}"
-                       hx-get="{% pageurl tool %}"
-                       hx-target="#main-content"
-                       hx-swap="outerHTML swap:300ms"
-                       hx-push-url="{% pageurl tool %}">
-                        <h3 class="text-2xl text-[#0f1020] font-bold font-cardo">{{ tool.title }}</h3>
-                    </a>
-                    <p class="text-[#0f1020]">
-                        {{ tool.specific.short_description|richtext }}
-                        <a href="{% pageurl tool %}"
-                           hx-get="{% pageurl tool %}"
-                           hx-target="#main-content"
-                           hx-swap="outerHTML swap:300ms"
-                           hx-push-url="{% pageurl tool %}"
-                           class="underline hover:underline-offset-2">Learn More…</a>
-                    </p>
-                    {% with tags=tool.specific.tags.all %}
-                        {% if tags %}
-                            <div class="text-[#0f1020] flex">
-                                <span class="mr-2">Tags:</span>
-                                <ul class="list-none inline space-x-1">
-                                    {% for tag in tags %}
-                                        <li class="inline">
-                                            <a href="{% slugurl 'tooltags' %}?tag={{ tag }}"
-                                               hx-get="{% slugurl 'tooltags' %}?tag={{ tag }}"
-                                               hx-target="#main-content"
-                                               hx-swap="outerHTML swap:300ms"
-                                               hx-push-url="{% slugurl 'tooltags' %}?tag={{ tag }}"
-                                               class="underline hover:underline-offset-2">{{ tag }}</a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        {% endif %}
-                    {% endwith %}
-                </li>
+                {% include "home/components/tool_card.html" %}
             {% endfor %}
         </ul>
     </section>

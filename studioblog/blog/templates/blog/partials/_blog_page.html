@@ -6,7 +6,7 @@
        hx-target="#main-content"
        hx-swap="outerHTML swap:300ms"
        hx-push-url="{{ page.get_parent.url }}"
-       class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline">← Back to Posts</a>
+       class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-[#ad40b5] px-0.5">← Back to Posts</a>
     <header class="my-2">
         <h2 class="font-cardo text-4xl font-bold text-[#0f1020]">{{ page.title }}</h2>
         <p class="italic text-neutral-800">{{ page.date }}</p>
@@ -22,7 +22,7 @@
                                    hx-target="#main-content"
                                    hx-swap="outerHTML swap:300ms"
                                    hx-push-url="{% slugurl 'tags' %}?tag={{ tag }}"
-                                   class="underline hover:underline-offset-2">{{ tag }}</a>
+                                   class="underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] px-0.5">{{ tag }}</a>
                             </li>
                         {% endfor %}
                     </ul>
