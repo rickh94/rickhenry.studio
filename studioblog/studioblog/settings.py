@@ -212,12 +212,3 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = os.getenv("WAGTAILADMIN_BASE_URL")
-
-if not DEBUG:
-    WAGTAILFRONTENDCACHE = {
-        "cloudflare": {
-            "BACKEND": "wagtail.contrib.frontend_cache.backends.CloudflareBackend",
-            "BEARER_TOKEN": os.getenv("CF_BEARER_TOKEN"),
-            "ZONEID": os.getenv("CF_ZONEID"),
-        }
-    }
