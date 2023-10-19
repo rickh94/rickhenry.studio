@@ -1,5 +1,6 @@
 {% load static wagtailcore_tags customfilters %}
 <main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
+    <script src="//unpkg.com/@botpoison/browser"></script>
     <section id="subhead" class="px-4 py-2 my-6">
         <div class="flex">
             <h2 class="font-cardo text-3xl text-[#0f1020] pl-1 pr-3 font-bold mb-2">Contact Me</h2>
@@ -7,6 +8,7 @@
         <p class="text-lg mx-2">Get in touch with me below using the form. I’d love to hear from you!</p>
     </section>
     <form action="{% url 'contact' %}"
+          id="contact-form"
           method="post"
           hx-post="{% url 'contact' %}"
           hx-target="#main-content"
@@ -14,6 +16,7 @@
           hx-trigger="submit"
           class="border bg-[#eff8fb] border-[#0f1020] px-4 py-3 gap-4 grid grid-cols-1 sm:grid-cols-2">
         {% csrf_token %}
+        {{ form.information }} {# This is the bot prevention honeypot #}
         <div class="flex flex-col">
             <label for="{{ form.name.id_for_label }}"
                    class="font-bold font-cardo text-lg">{{ form.name.label }}</label>
@@ -24,6 +27,7 @@
             <label for="{{ form.subject.id_for_label }}"
                    class="font-bold font-cardo text-lg">{{ form.subject.label }}</label>
             {{ form.subject|addclass:"w-full mb-4 border-2 border-[#586F7C] px-2 py-1 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none" }}
+            {{ form.botpoison }}
         </div>
         <div>
             <div class="flex items-center">
@@ -34,8 +38,10 @@
         </div>
         <div class="w-full flex flex-row-reverse justify-start col-span-full gap-2">
             <button type="submit"
+                    id="contact-form-submit"
+                    disabled
                     class="bg-emerald-300 border-2 border-emerald-700 text-emerald-900 text-lg px-4 pt-2 pb-1 font-medium font-hind hover:bg-emerald-100 hover:border-emerald-500 hover:text-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-black focus:outline-none hover:shadow-lg">
-                Send
+                Please Wait...
             </button>
             <button type="reset"
                     class="bg-rose-300 border-2 border-rose-700 text-rose-900 text-lg px-4 pt-2 pb-1 font-medium font-hind hover:bg-rose-100 hover:border-rose-500 hover:text-rose-500 focus:ring-2 focus:ring-offset-2 focus:ring-black focus:outline-none hover:shadow-lg">
@@ -43,4 +49,25 @@
             </button>
         </div>
     </form>
+    {% comment %}
+    This is a mess. Botpoison normally runs basically as a hook on submit. That
+    doesn't work correctly with htmx so we need to add the botpoison field manually.
+    I'm re-declaring the class every load to avoid weird redeclaration issues.
+    {% endcomment %}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        (new Botpoison({publicKey: 'pk_b00f85bc-250a-43e0-ad8f-934253ba39b2'})).challenge().then(({solution}) => {
+          document.getElementById('id_botpoison').value = solution;
+          document.getElementById('contact-form-submit').disabled = false;
+          document.getElementById('contact-form-submit').innerText = 'Send';
+        })
+      });
+      document.addEventListener('htmx:load', () => {
+        (new Botpoison({publicKey: 'pk_b00f85bc-250a-43e0-ad8f-934253ba39b2'})).challenge().then(({solution}) => {
+          document.getElementById('id_botpoison').value = solution;
+          document.getElementById('contact-form-submit').disabled = false;
+          document.getElementById('contact-form-submit').innerText = 'Send';
+        })
+      });
+    </script>
 </main>

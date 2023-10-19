@@ -182,6 +182,8 @@ else:
     EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
     EMAIL_USE_TLS = True
 
+BOTPOISON_SECRET_KEY = os.getenv("BOTPOISON_SECRET_KEY")
+
 
 STATIC_ROOT = Path(PROJECT_DIR) / "staticfiles"
 
