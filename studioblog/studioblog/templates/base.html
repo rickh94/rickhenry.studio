@@ -67,7 +67,8 @@
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">Home</a>
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]"
+                           data-clearfocus="true">Home</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
                         <a href="/blog"
@@ -75,6 +76,7 @@
                            hx-get="/blog"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
+                           data-clearfocus="true"
                            hx-push-url="true">Blog</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
@@ -82,6 +84,7 @@
                            hx-get="/practice-tools"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
+                           data-clearfocus="true"
                            hx-push-url="true"
                            class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">Practice Tools</a>
                     </li>
@@ -91,6 +94,7 @@
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
+                           data-clearfocus="true"
                            class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">About</a>
                     </li>
                     <li class="hover:text-[#0f1020]">
@@ -99,6 +103,7 @@
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
+                           data-clearfocus="true"
                            class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">Contact Me</a>
                     </li>
                 </ul>
@@ -142,5 +147,12 @@
         </footer>
         {# Global javascript #}
         {% block extra_js %}{# Override this in templates to add extra javascript #}{% endblock %}
+        <script>
+        document.addEventListener('htmx:afterSettle', function() {
+          document.querySelectorAll('[data-clearfocus]').forEach(el => {
+            el.blur();
+          });
+        });
+        </script>
     </body>
 </html>
