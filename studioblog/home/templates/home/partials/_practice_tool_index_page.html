@@ -8,10 +8,10 @@
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="/practice-tools"
-               class="mt-2 text-xl text-[#ad40b5] hover:text-[#0f1020] underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-[#ad40b5] px-0.5">← Back to All Practice Tools</a>
+               class="mt-2 text-xl text-fuchsia-700 hover:text-zinc-800 underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-700 px-0.5">← Back to All Practice Tools</a>
         {% endif %}
         <header class="flex">
-            <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
+            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
         </header>
         <!-- TODO: htmx-ifiy this search -->
         <form action=""
@@ -27,7 +27,7 @@
                    name="q"
                    placeholder="Search…"
                    value="{{ q }}"
-                   class="block flex-1 border-2 border-[#586F7C] px-2 py-1 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none" />
+                   class="block flex-1 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" />
             <button type="submit"
                     class="block flex-0 bg-emerald-300 pt-1 border-2 border-emerald-700 text-emerald-900 text-lg px-4 h-full font-medium font-hind hover:bg-emerald-100 hover:border-emerald-500 hover:text-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-black focus:outline-none hover:shadow-lg">
                 Search
@@ -35,7 +35,7 @@
         </form>
         {% if q %}
             <div class="my-4">
-                <h3 class="inline my-4 text-2xl text-[#0f1020] font-cardo pr-1">Results for:</h3>
+                <h3 class="inline my-4 text-2xl text-zinc-800 font-cardo pr-1">Results for:</h3>
                 <em class="italic inline text-2xl">{{ q }}</em>
             </div>
         {% endif %}

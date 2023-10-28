@@ -2,13 +2,13 @@
 <main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
     <section id="welcome" class="px-4 py-2 my-6">
         <div class="flex">
-            <h2 class="font-cardo text-3xl text-[#0f1020] pr-3 font-bold mb-2">{{ page.intro_title }}</h2>
+            <h2 class="font-cardo text-3xl text-zinc-800 pr-3 font-bold mb-2">{{ page.intro_title }}</h2>
         </div>
         <p class="text-lg mx-2">{{ page.intro|richtext }}</p>
     </section>
     <section id="posts">
         <header class="flex">
-            <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Recent Posts</h2>
+            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">Recent Posts</h2>
         </header>
         <ul id="post-list"
             class="list-none grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
@@ -22,14 +22,14 @@
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="{% slugurl 'blog' %}"
-               class="block text-xl border-2 bg-[#dff0f7] shadow-sm hover:shadow font-medium hover:border-[#586F7C] px-4 py-2 hover:text-[#586F7C] border-[#0f1020] text-[#0f1020] focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-[#0f1020]">
+               class="block text-xl border-2 bg-sky-100 shadow-sm hover:shadow font-medium hover:border-zinc-500 px-4 py-2 hover:text-zinc-500 border-zinc-800 text-zinc-800 focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-zinc-800">
                 View More Posts
             </a>
         </div>
     </section>
     <section id="practice-tools">
         <header class="flex">
-            <h2 class="text-4xl text-[#0f1020] border-b-2 border-[#0f1020] font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
+            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
         </header>
         <ul id="tool-list"
             class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
@@ -44,7 +44,7 @@
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="{% slugurl 'practice-tools' %}"
-               class="block text-xl border-2 bg-[#dff0f7] shadow-sm hover:shadow font-medium hover:border-[#586F7C] px-4 py-2 hover:text-[#586F7C] border-[#0f1020] text-[#0f1020] focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-[#0f1020]">
+               class="block text-xl border-2 bg-sky-100 shadow-sm hover:shadow font-medium hover:border-zinc-500 px-4 py-2 hover:text-zinc-500 border-zinc-800 text-zinc-800 focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-zinc-800">
                 View More Tools
             </a>
         </div>

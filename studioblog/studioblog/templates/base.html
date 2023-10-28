@@ -44,7 +44,7 @@
         <script src="{% static 'js/abcjs-basic-min.js' %}"></script>
         <script src="{% static 'js/htmx.min.js' %}" defer></script>
     </head>
-    <body class="{% block body_class %}{% endblock %} h-full bg-gradient-to-br from-white to-[#FAEEFC] antialiased min-h-screen flex flex-col">
+    <body class="{% block body_class %}{% endblock %} h-full bg-gradient-to-br from-white to-fuchsia-50 antialiased min-h-screen flex flex-col">
         {% wagtailuserbar %}
         <a tabindex="0"
            href="#main-content"
@@ -54,57 +54,57 @@
         </a>
         <header class="max-w-6xl container mx-auto mt-8 sm:mt-16">
             <div class="flex flex-col items-center w-full mb-8 sm:mb-10">
-                <h1 class="text-3xl sm:text-5xl text-[#0f1020] text-center font-bold font-cardo">Rick’s Music Stuff</h1>
-                <p class="text-lg sm:text-xl font-hind text-center px-2 pt-2 text-[#6d4e7e] italic">
+                <h1 class="text-3xl sm:text-5xl text-zinc-900 text-center font-bold font-cardo">Rick’s Music Stuff</h1>
+                <p class="text-lg sm:text-xl font-hind text-center px-2 pt-2 text-zinc-800 italic">
                     A simple site for my thoughts and useful stuff
                 </p>
             </div>
-            <nav class="flex justify-center w-full my-2 sm:my-4 border-b-2 border-t-2 border-[#e4a8f0] font-medium">
-                <ul class="list-none px-4 w-full grid grid-cols-2 sm:flex justify-around text-xl text-[#ad40b5]">
-                    <li class="hover:text-[#0f1020]">
+            <nav class="flex justify-center w-full my-2 sm:my-4 border-b-2 border-t-2 border-fuchsia-500 font-medium bg-fuchsia-400/5">
+                <ul class="list-none px-4 w-full grid grid-cols-2 sm:flex justify-around text-xl text-fuchsia-500">
+                    <li class="hover:text-zinc-800">
                         <a href="/"
                            hx-get="/"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]"
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 focus:text-zinc-800"
                            data-clearfocus="true">Home</a>
                     </li>
-                    <li class="hover:text-[#0f1020]">
+                    <li class="hover:text-zinc-800">
                         <a href="/blog"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]"
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 focus:text-zinc-800"
                            hx-get="/blog"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            data-clearfocus="true"
                            hx-push-url="true">Blog</a>
                     </li>
-                    <li class="hover:text-[#0f1020]">
+                    <li class="hover:text-zinc-800">
                         <a href="/practice-tools"
                            hx-get="/practice-tools"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            data-clearfocus="true"
                            hx-push-url="true"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">Practice Tools</a>
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 focus:text-zinc-800">Practice Tools</a>
                     </li>
-                    <li class="hover:text-[#0f1020]">
+                    <li class="hover:text-zinc-800">
                         <a href="/about"
                            hx-get="/about"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
                            data-clearfocus="true"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">About</a>
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 focus:text-zinc-800">About</a>
                     </li>
-                    <li class="hover:text-[#0f1020]">
+                    <li class="hover:text-zinc-800">
                         <a href="{% url 'contact' %}"
                            hx-get="{% url 'contact' %}"
                            hx-target="#main-content"
                            hx-swap="outerHTML swap:300ms"
                            hx-push-url="true"
                            data-clearfocus="true"
-                           class="px-2 focus:outline-none focus:ring-2 focus:ring-[#0f1020] focus:text-[#0f1020]">Contact Me</a>
+                           class="px-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 focus:text-zinc-800">Contact Me</a>
                     </li>
                 </ul>
             </nav>
@@ -112,7 +112,7 @@
         {% block content %}{% endblock %}
         <footer class="text-black flex-0 w-screen pt-4">
             <div class="flex flex-col justify-between items-center sm:flex-row max-w-4xl mx-auto px-4">
-                <div class="text-neutral-800 italic text-center sm:text-left">
+                <div class="text-zinc-800 italic text-center sm:text-left">
                     Want something like this for your own teaching? <a target="_blank"
     rel="noopener noreferrer"
     class="underline hover:text-azure-500"

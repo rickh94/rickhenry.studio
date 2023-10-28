@@ -3,7 +3,7 @@
     <script src="//unpkg.com/@botpoison/browser"></script>
     <section id="subhead" class="px-4 py-2 my-6">
         <div class="flex">
-            <h2 class="font-cardo text-3xl text-[#0f1020] pl-1 pr-3 font-bold mb-2">Contact Me</h2>
+            <h2 class="font-cardo text-3xl text-zinc-800 pl-1 pr-3 font-bold mb-2">Contact Me</h2>
         </div>
         <p class="text-lg mx-2">Get in touch with me below using the form. I’d love to hear from you!</p>
     </section>
@@ -14,19 +14,19 @@
           hx-target="#main-content"
           hx-swap="outerHTML swap:300ms"
           hx-trigger="submit"
-          class="border bg-[#eff8fb] border-[#0f1020] px-4 py-3 gap-4 grid grid-cols-1 sm:grid-cols-2">
+          class="border bg-sky-100 border-zinc-800 px-4 py-3 gap-4 grid grid-cols-1 sm:grid-cols-2">
         {% csrf_token %}
         {{ form.information }} {# This is the bot prevention honeypot #}
         <div class="flex flex-col">
             <label for="{{ form.name.id_for_label }}"
                    class="font-bold font-cardo text-lg">{{ form.name.label }}</label>
-            {{ form.name|addclass:"w-full mb-4 border-2 border-[#586F7C] px-2 py-1 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none" }}
+            {{ form.name|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             <label for="{{ form.from_email.id_for_label }}"
                    class="font-bold font-cardo text-lg">{{ form.from_email.label }}</label>
-            {{ form.from_email|addclass:"w-full mb-4 border-2 border-[#586F7C] px-2 py-1 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none" }}
+            {{ form.from_email|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             <label for="{{ form.subject.id_for_label }}"
                    class="font-bold font-cardo text-lg">{{ form.subject.label }}</label>
-            {{ form.subject|addclass:"w-full mb-4 border-2 border-[#586F7C] px-2 py-1 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none" }}
+            {{ form.subject|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             {{ form.botpoison }}
         </div>
         <div>
@@ -34,7 +34,7 @@
                 <label for="{{ form.message.id_for_label }}"
                        class="font-bold font-cardo text-lg">{{ form.message.label }}</label>
             </div>
-            {{ form.message|addclass:"h-52 w-full border-2 border-[#586F7C] p-2 font-hind focus:border-[#0f1020] focus:shadow-lg focus:outline-none focus:border-black" }}
+            {{ form.message|addclass:"h-52 w-full border-2 border-zinc-500 p-2 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none focus:border-black" }}
         </div>
         <div class="w-full flex flex-row-reverse justify-start col-span-full gap-2">
             <button type="submit"
