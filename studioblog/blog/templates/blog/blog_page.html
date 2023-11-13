@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% block og_image %}
+    <meta property="og:image"
+          content="https://og.rickhenry.dev/blog/posts/{{ page.title }}/opengraph-image" />
+    <meta name="twitter:image"
+          content="https://og.rickhenry.dev/blog/posts/{{ page.title }}/opengraph-image" />
+    <meta property="og:type" content="website" />
+{% endblock %}
 {% block body_class %}{% endblock %}
 {% block content %}
     {% include "blog/partials/_blog_page.html" %}
