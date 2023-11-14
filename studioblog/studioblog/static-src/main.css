@@ -8,7 +8,7 @@
   font-family: "Hind";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/hind-v16-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/hind-v16-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* hind-500 - latin */
@@ -17,7 +17,7 @@
   font-family: "Hind";
   font-style: normal;
   font-weight: 500;
-  src: url("../fonts/hind-v16-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/hind-v16-latin-500.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* hind-600 - latin */
@@ -26,7 +26,7 @@
   font-family: "Hind";
   font-style: normal;
   font-weight: 600;
-  src: url("../fonts/hind-v16-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/hind-v16-latin-600.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* hind-700 - latin */
@@ -35,7 +35,7 @@
   font-family: "Hind";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/hind-v16-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/hind-v16-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* cardo-regular - latin */
@@ -44,7 +44,7 @@
   font-family: "Cardo";
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/cardo-v19-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/cardo-v19-latin-regular.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* cardo-700 - latin */
@@ -53,7 +53,7 @@
   font-family: "Cardo";
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/cardo-v19-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+  src: url("/static/fonts/cardo-v19-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 .font-hind {
