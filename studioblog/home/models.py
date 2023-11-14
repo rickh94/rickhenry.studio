@@ -12,6 +12,7 @@ from wagtail.search import index
 from wagtail.search.backends import get_search_backend
 
 from studioblog.blocks import ABCBlock, AudioBlock
+from studioblog.types import HtmxHttpRequest, WagtailPageManager
 
 
 class HomePage(Page):
@@ -23,7 +24,7 @@ class HomePage(Page):
         FieldPanel("intro"),
     ]
 
-    def get_context(self, request, *args, **kwargs):
+    def get_context(self, request: HtmxHttpRequest, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
         context["recent_posts"] = BlogPage.objects.live().order_by("-date")[:5]
         context["featured_tools"] = PracticeToolPage.objects.live().filter(
@@ -31,7 +32,7 @@ class HomePage(Page):
         )
         return context
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *args, **kwargs):
         if request.htmx and not request.htmx.boosted:
             return "home/htmx/home_page.html"
         else:
@@ -55,7 +56,7 @@ class AboutPage(Page):
         FieldPanel("body"),
     ]
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *args, **kwargs):
         if request.htmx and not request.htmx.boosted:
             return "home/htmx/about_page.html"
         else:
@@ -72,6 +73,7 @@ class PracticeToolTag(TaggedItemBase):
 
 
 class PracticeToolPage(Page):
+    objects: WagtailPageManager
     short_description = RichTextField(blank=True)
     long_description = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=PracticeToolTag, blank=True)
@@ -91,7 +93,7 @@ class PracticeToolPage(Page):
         index.SearchField("long_description"),
     ]
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *args, **kwargs):
         if request.htmx and not request.htmx.boosted:
             return "home/htmx/practice_tool_page.html"
         else:
@@ -106,7 +108,7 @@ class PracticeToolIndexPage(Page):
 
     paginate_by = 20
 
-    def get_context(self, request):
+    def get_context(self, request: HtmxHttpRequest):
         """Handles pagination and search for live blog pages"""
         context = super().get_context(request)
         practice_tool_list = PracticeToolPage.objects.live().order_by("title")
@@ -124,7 +126,7 @@ class PracticeToolIndexPage(Page):
 
         return context
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *args, **kwargs):
         if request.htmx and not request.htmx.boosted:
             return "home/htmx/practice_tool_index_page.html"
         else:
@@ -134,7 +136,7 @@ class PracticeToolIndexPage(Page):
 class PracticeToolTagIndexPage(Page):
     paginate_by = 20
 
-    def get_context(self, request):
+    def get_context(self, request: HtmxHttpRequest):
         tag = request.GET.get("tag")
         practice_tools = PracticeToolPage.objects.live().filter(tags__name=tag)
 

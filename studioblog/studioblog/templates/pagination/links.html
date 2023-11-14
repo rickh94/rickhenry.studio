@@ -1,5 +1,5 @@
 {% with disabled_class="border-zinc-100 bg-zinc-100 pointer-events-none text-zinc-400" enabled_class="bg-sky-100 hover:text-zinc-500 border-zinc-800 text-zinc-800 shadow-sm hover:shadow font-medium hover:border-zinc-500 text-black focus:ring-black focus:ring-offset-2 focus:ring-offset-white focus:ring-2" %}
-    <div class="w-full flex justify-between mt-4">
+    <div class="flex justify-between mt-4 w-full">
         <a class="block border-2 {% if has_previous %} {{ enabled_class }} {% else %} {{ disabled_class }} {% endif %} py-1 px-2 font-medium focus:outline-none"
            {% if has_previous %} href="{{ prev_link }}" hx-get="{{ prev_link }}" hx-push-url="{{ prev_link }}" hx-swap="outerHTML swap:300ms" hx-target="#main-content" {% else %} href="#" disabled tabindex="-1" {% endif %}>Previous Page</a>
         <span class="page-current">Page {{ page_number }} of {{ page_count }}</span>

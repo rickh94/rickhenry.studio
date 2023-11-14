@@ -15,7 +15,9 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import django_stubs_ext
 
+django_stubs_ext.monkeypatch()
 DEBUG = os.getenv("DEBUG", "false").lower() == "true"
 
 SECRET_KEY = os.getenv("SECRET_KEY")

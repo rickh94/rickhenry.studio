@@ -1,50 +1,50 @@
 {% load static wagtailcore_tags %}
-<main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
-    <section id="welcome" class="px-4 py-2 my-6">
+<main id="main-content" class="container flex-1 px-4 mx-auto max-w-5xl">
+    <section id="welcome" class="py-2 px-4 my-6">
         <div class="flex">
-            <h2 class="font-cardo text-3xl text-zinc-800 pr-3 font-bold mb-2">{{ page.intro_title }}</h2>
+            <h2 class="pr-3 mb-2 text-3xl font-bold font-cardo text-zinc-800">{{ page.intro_title }}</h2>
         </div>
-        <p class="text-lg mx-2">{{ page.intro|richtext }}</p>
+        <p class="mx-2 text-lg">{{ page.intro|richtext }}</p>
     </section>
     <section id="posts">
         <header class="flex">
-            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">Recent Posts</h2>
+            <h2 class="pr-6 pl-2 text-4xl font-bold border-b-2 text-zinc-800 border-zinc-800 font-cardo">Recent Posts</h2>
         </header>
         <ul id="post-list"
-            class="list-none grid grid-cols-1 sm:grid-cols-2 gap-4 my-2">
+            class="grid grid-cols-1 gap-4 my-2 list-none sm:grid-cols-2">
             {% for post in recent_posts %}
                 {% include "blog/components/post_card.html" %}
             {% endfor %}
         </ul>
-        <div class="flex w-full justify-center my-4">
+        <div class="flex justify-center my-4 w-full">
             <a href="{% slugurl 'blog' %}"
                hx-get="{% slugurl 'blog' %}"
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="{% slugurl 'blog' %}"
-               class="block text-xl border-2 bg-sky-100 shadow-sm hover:shadow font-medium hover:border-zinc-500 px-4 py-2 hover:text-zinc-500 border-zinc-800 text-zinc-800 focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-zinc-800">
+               class="block py-2 px-4 text-xl font-medium border-2 shadow-sm hover:shadow focus:ring-2 focus:ring-offset-1 focus:ring-offset-white focus:outline-none bg-sky-100 border-zinc-800 text-zinc-800 hover:border-zinc-500 hover:text-zinc-500 focus:ring-zinc-800">
                 View More Posts
             </a>
         </div>
     </section>
     <section id="practice-tools">
         <header class="flex">
-            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">Practice Tools</h2>
+            <h2 class="pr-6 pl-2 text-4xl font-bold border-b-2 text-zinc-800 border-zinc-800 font-cardo">Practice Tools</h2>
         </header>
         <ul id="tool-list"
-            class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+            class="grid grid-cols-1 gap-2 my-2 list-none sm:grid-cols-2">
             {% for tool in featured_tools %}
                 {% include "home/components/tool_card.html" %}
             {% endfor %}
         </ul>
         <!-- TODO: tweak hover effect, maybe add focus effect -->
-        <div class="flex w-full justify-center my-4">
+        <div class="flex justify-center my-4 w-full">
             <a href="{% slugurl 'practice-tools' %}"
                hx-get="{% slugurl 'practice-tools' %}"
                hx-target="#main-content"
                hx-swap="outerHTML swap:300ms"
                hx-push-url="{% slugurl 'practice-tools' %}"
-               class="block text-xl border-2 bg-sky-100 shadow-sm hover:shadow font-medium hover:border-zinc-500 px-4 py-2 hover:text-zinc-500 border-zinc-800 text-zinc-800 focus:outline-none focus:ring-offset-white focus:ring-offset-1 focus:ring-2 focus:ring-zinc-800">
+               class="block py-2 px-4 text-xl font-medium border-2 shadow-sm hover:shadow focus:ring-2 focus:ring-offset-1 focus:ring-offset-white focus:outline-none bg-sky-100 border-zinc-800 text-zinc-800 hover:border-zinc-500 hover:text-zinc-500 focus:ring-zinc-800">
                 View More Tools
             </a>
         </div>

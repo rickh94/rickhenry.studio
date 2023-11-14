@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-
-{
-
+{ pkgs, ... }: {
   # https://devenv.sh/packages/
   packages = [
     pkgs.git
@@ -13,6 +10,7 @@
     pkgs.python311
     pkgs.poetry
     pkgs.litefs
+    pkgs.rustywind
   ];
 
   languages = {
@@ -51,7 +49,6 @@
     litestream.exec = "${pkgs.litestream}/bin/litestream replicate -config ${./litestream.dev.yml}";
     dev.exec = "cd studioblog && ${pkgs.poetry}/bin/poetry run python manage.py runserver 0.0.0.0:8000";
   };
-
 
   scripts.view.exec = "microserver --no-spa design";
 }

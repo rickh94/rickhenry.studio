@@ -1,20 +1,20 @@
 {% load wagtailcore_tags %}
 <main id="main-content"
-      class="container max-w-5xl mx-auto px-4 my-4 flex-1">
+      class="container flex-1 px-4 my-4 mx-auto max-w-5xl">
     <a href="{{ page.get_parent.url }}"
        hx-get="{{ page.get_parent.url }}"
        hx-target="#main-content"
        hx-swap="outerHTML swap:300ms"
        hx-push-url="{{ page.get_parent.url }}"
-       class="mt-2 text-xl text-fuchsia-700 hover:text-zinc-800 underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-fuchsia-700 px-0.5">← Back to Posts</a>
+       class="px-0.5 mt-2 text-xl text-fuchsia-700 underline focus:ring-2 focus:ring-fuchsia-700 focus:outline-none hover:text-zinc-800 hover:underline-offset-2">← Back to Posts</a>
     <header class="my-2">
-        <h2 class="font-cardo text-4xl font-bold text-zinc-800">{{ page.title }}</h2>
+        <h2 class="text-4xl font-bold font-cardo text-zinc-800">{{ page.title }}</h2>
         <p class="italic text-zinc-800">{{ page.date }}</p>
         {% with tags=page.tags.all %}
             {% if tags %}
-                <div class="text-zinc-800 flex">
+                <div class="flex text-zinc-800">
                     <span class="mr-2">Posted in:</span>
-                    <ul class="list-none inline space-x-1">
+                    <ul class="inline space-x-1 list-none">
                         {% for tag in tags %}
                             <li class="inline">
                                 <a href="{% slugurl 'tags' %}?tag={{ tag }}"
@@ -22,7 +22,7 @@
                                    hx-target="#main-content"
                                    hx-swap="outerHTML swap:300ms"
                                    hx-push-url="{% slugurl 'tags' %}?tag={{ tag }}"
-                                   class="underline hover:underline-offset-2 focus:outline-none focus:ring-2 focus:ring-zinc-800 px-0.5">{{ tag }}</a>
+                                   class="px-0.5 underline focus:ring-2 focus:outline-none hover:underline-offset-2 focus:ring-zinc-800">{{ tag }}</a>
                             </li>
                         {% endfor %}
                     </ul>

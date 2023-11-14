@@ -12,6 +12,7 @@ from wagtail.search import index
 from wagtail.search.backends import get_search_backend
 
 from studioblog.blocks import ABCBlock, AudioBlock
+from studioblog.types import HtmxHttpRequest, WagtailPageManager
 
 
 class BlogIndexPage(Page):
@@ -21,7 +22,7 @@ class BlogIndexPage(Page):
     ]
     paginate_by = 20
 
-    def get_context(self, request):
+    def get_context(self, request: HtmxHttpRequest):
         """Handles pagination and search for live blog pages"""
         context = super().get_context(request)
         post_list = BlogPage.objects.live().order_by("-date")
@@ -39,7 +40,7 @@ class BlogIndexPage(Page):
 
         return context
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *_args, **_kwargs):
         if request.htmx and not request.htmx.boosted:
             return "blog/htmx/blog_index_page.html"
         else:
@@ -53,6 +54,7 @@ class BlogPageTag(TaggedItemBase):
 
 
 class BlogPage(Page):
+    objects: WagtailPageManager
     date = models.DateField("Post date")
     intro = models.CharField(max_length=250)
     body = StreamField(
@@ -84,7 +86,7 @@ class BlogPage(Page):
         FieldPanel("body"),
     ]
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request, *_args, **_kwargs):
         if request.htmx and not request.htmx.boosted:
             return "blog/htmx/blog_page.html"
         else:
@@ -94,7 +96,7 @@ class BlogPage(Page):
 class BlogTagIndexPage(Page):
     paginate_by = 20
 
-    def get_context(self, request):
+    def get_context(self, request: HtmxHttpRequest):
         tag = request.GET.get("tag")
         blogpages = BlogPage.objects.live().filter(tags__name=tag)
 
@@ -108,7 +110,7 @@ class BlogTagIndexPage(Page):
 
         return context
 
-    def get_template(self, request, *args, **kwargs):
+    def get_template(self, request: HtmxHttpRequest, *args, **kwargs):
         if request.htmx and not request.htmx.boosted:
             return "blog/htmx/blog_tag_index_page.html"
         else:

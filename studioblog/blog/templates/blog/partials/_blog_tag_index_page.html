@@ -1,20 +1,20 @@
 {% load wagtailcore_tags customfilters %}
 <main id="main-content"
-      class="container max-w-5xl mx-auto px-4 my-4 flex-1">
+      class="container flex-1 px-4 my-4 mx-auto max-w-5xl">
     <section id="posts">
         <a href="{{ page.get_parent.url }}"
            hx-get="{{ page.get_parent.url }}"
            hx-target="#main-content"
            hx-swap="outerHTML swap:300ms"
            hx-push-url="{{ page.get_parent.url }}"
-           class="my-2 text-xl text-fuchsia-700 hover:text-zinc-800 underline">← Back to All Posts</a>
+           class="my-2 text-xl text-fuchsia-700 underline hover:text-zinc-800">← Back to All Posts</a>
         <header class="flex">
-            <h2 class="text-4xl text-zinc-800 border-b-2 border-zinc-800 font-bold font-cardo pl-2 pr-6">
+            <h2 class="pr-6 pl-2 text-4xl font-bold border-b-2 text-zinc-800 border-zinc-800 font-cardo">
                 Showing pages tagged "{{ request.GET.tag }}"
             </h2>
         </header>
         <ul id="post-list"
-            class="list-none grid grid-cols-1 sm:grid-cols-2 gap-2 my-2">
+            class="grid grid-cols-1 gap-2 my-2 list-none sm:grid-cols-2">
             {% for post in page_obj %}
                 {% include "blog/components/post_card.html" %}
             {% empty %}

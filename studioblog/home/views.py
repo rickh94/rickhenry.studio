@@ -9,6 +9,8 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 
+from studioblog.types import HtmxView
+
 
 class ContactForm(forms.Form):
     """
@@ -73,7 +75,7 @@ class ContactForm(forms.Form):
         email.send()
 
 
-class ContactFormView(FormView):
+class ContactFormView(HtmxView, FormView):
     template_name = "home/contact.html"
     form_class = ContactForm
     success_url = reverse_lazy("thank-you")

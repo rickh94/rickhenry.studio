@@ -1,13 +1,13 @@
 {% load static wagtailcore_tags %}
-<main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
+<main id="main-content" class="container flex-1 px-4 mx-auto max-w-5xl">
     <div class="flex">
-        <h2 class="font-cardo text-3xl text-zinc-800 pl-1 pr-3 font-bold mb-2">Thank You!</h2>
+        <h2 class="pr-3 pl-1 mb-2 text-3xl font-bold font-cardo text-zinc-800">Thank You!</h2>
     </div>
-    <p class="text-lg mx-2">Thanks for reaching out to me, I’ll get back to you as soon as I can!</p>
+    <p class="mx-2 text-lg">Thanks for reaching out to me, I’ll get back to you as soon as I can!</p>
     <a href="/"
        hx-get="/"
        hx-target="#main-content"
        hx-swap="outerHTML swap:300ms"
        hx-push-url="/"
-       class="mt-8 text-xl text-fuchsia-700 hover:text-zinc-800 underline mx-2">← Back Home</a>
+       class="mx-2 mt-8 text-xl text-fuchsia-700 underline hover:text-zinc-800">← Back Home</a>
 </main>

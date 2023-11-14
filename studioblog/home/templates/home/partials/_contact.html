@@ -1,11 +1,11 @@
 {% load static wagtailcore_tags customfilters %}
-<main id="main-content" class="container max-w-5xl mx-auto px-4 flex-1">
+<main id="main-content" class="container flex-1 px-4 mx-auto max-w-5xl">
     <script src="//unpkg.com/@botpoison/browser"></script>
-    <section id="subhead" class="px-4 py-2 my-6">
+    <section id="subhead" class="py-2 px-4 my-6">
         <div class="flex">
-            <h2 class="font-cardo text-3xl text-zinc-800 pl-1 pr-3 font-bold mb-2">Contact Me</h2>
+            <h2 class="pr-3 pl-1 mb-2 text-3xl font-bold font-cardo text-zinc-800">Contact Me</h2>
         </div>
-        <p class="text-lg mx-2">Get in touch with me below using the form. I’d love to hear from you!</p>
+        <p class="mx-2 text-lg">Get in touch with me below using the form. I’d love to hear from you!</p>
     </section>
     <form action="{% url 'contact' %}"
           id="contact-form"
@@ -14,37 +14,37 @@
           hx-target="#main-content"
           hx-swap="outerHTML swap:300ms"
           hx-trigger="submit"
-          class="border bg-sky-100 border-zinc-800 px-4 py-3 gap-4 grid grid-cols-1 sm:grid-cols-2">
+          class="grid grid-cols-1 gap-4 py-3 px-4 border sm:grid-cols-2 bg-sky-100 border-zinc-800">
         {% csrf_token %}
         {{ form.information }} {# This is the bot prevention honeypot #}
         <div class="flex flex-col">
             <label for="{{ form.name.id_for_label }}"
-                   class="font-bold font-cardo text-lg">{{ form.name.label }}</label>
+                   class="text-lg font-bold font-cardo">{{ form.name.label }}</label>
             {{ form.name|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             <label for="{{ form.from_email.id_for_label }}"
-                   class="font-bold font-cardo text-lg">{{ form.from_email.label }}</label>
+                   class="text-lg font-bold font-cardo">{{ form.from_email.label }}</label>
             {{ form.from_email|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             <label for="{{ form.subject.id_for_label }}"
-                   class="font-bold font-cardo text-lg">{{ form.subject.label }}</label>
+                   class="text-lg font-bold font-cardo">{{ form.subject.label }}</label>
             {{ form.subject|addclass:"w-full mb-4 border-2 border-zinc-500 px-2 py-1 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none" }}
             {{ form.botpoison }}
         </div>
         <div>
             <div class="flex items-center">
                 <label for="{{ form.message.id_for_label }}"
-                       class="font-bold font-cardo text-lg">{{ form.message.label }}</label>
+                       class="text-lg font-bold font-cardo">{{ form.message.label }}</label>
             </div>
             {{ form.message|addclass:"h-52 w-full border-2 border-zinc-500 p-2 font-hind focus:border-zinc-800 focus:shadow-lg focus:outline-none focus:border-black" }}
         </div>
-        <div class="w-full flex flex-row-reverse justify-start col-span-full gap-2">
+        <div class="flex flex-row-reverse col-span-full gap-2 justify-start w-full">
             <button type="submit"
                     id="contact-form-submit"
                     disabled
-                    class="bg-emerald-300 border-2 border-emerald-700 text-emerald-900 text-lg px-4 pt-2 pb-1 font-medium font-hind hover:bg-emerald-100 hover:border-emerald-500 hover:text-emerald-500 focus:ring-2 focus:ring-offset-2 focus:ring-black focus:outline-none hover:shadow-lg">
+                    class="px-4 pt-2 pb-1 text-lg font-medium text-emerald-900 bg-emerald-300 border-2 border-emerald-700 hover:text-emerald-500 hover:bg-emerald-100 hover:border-emerald-500 hover:shadow-lg focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none font-hind">
                 Please Wait...
             </button>
             <button type="reset"
-                    class="bg-rose-300 border-2 border-rose-700 text-rose-900 text-lg px-4 pt-2 pb-1 font-medium font-hind hover:bg-rose-100 hover:border-rose-500 hover:text-rose-500 focus:ring-2 focus:ring-offset-2 focus:ring-black focus:outline-none hover:shadow-lg">
+                    class="px-4 pt-2 pb-1 text-lg font-medium text-rose-900 bg-rose-300 border-2 border-rose-700 hover:text-rose-500 hover:bg-rose-100 hover:border-rose-500 hover:shadow-lg focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-none font-hind">
                 Clear
             </button>
         </div>
