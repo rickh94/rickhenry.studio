@@ -6,7 +6,7 @@ RUN bun install
 COPY ./studioblog/. .
 RUN bun run build
 
-FROM python:3.11-slim-buster
+FROM python:3.11-slim-bookworm
 
 # RUN useradd wagtail
 
@@ -39,7 +39,7 @@ WORKDIR /app
 
 #COPY --chown=django:django ./app/. .
 COPY ./studioblog/. .
-COPY --from=builder1 /studioblog/studioblog/static/css/studioblog.css /app/studioblog/static/css/studioblog.css  
+COPY --from=builder1 /studioblog/studioblog/static/css/studioblog.css /app/studioblog/static/css/studioblog.css
 #USER django
 
 RUN python manage.py collectstatic --noinput --clear
