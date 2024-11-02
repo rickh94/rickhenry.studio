@@ -6,7 +6,7 @@ RUN bun install
 COPY ./studioblog/. .
 RUN bun run build
 
-FROM python:3.11-slim-bookworm
+FROM python:3.12-slim-bookworm
 
 # RUN useradd wagtail
 
@@ -16,6 +16,7 @@ ENV PYTHONUNBUFFERED=1 \
 	PORT=8000
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
+    sqlite3 \
     build-essential \
     libpq-dev \
     libmariadbclient-dev \
