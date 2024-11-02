@@ -6,7 +6,7 @@ RUN bun install
 COPY ./studioblog/. .
 RUN bun run build
 
-FROM python:3.12-slim-bookworm
+FROM python:3.12
 
 # RUN useradd wagtail
 
@@ -19,7 +19,6 @@ RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-r
     sqlite3 \
     build-essential \
     libpq-dev \
-    libmariadbclient-dev \
     libjpeg62-turbo-dev \
     zlib1g-dev \
     libwebp-dev \
