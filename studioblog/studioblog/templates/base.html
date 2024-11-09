@@ -137,28 +137,15 @@
             </nav>
         </header>
         {% block content %}{% endblock %}
-        {#
+        {% comment %}
         <footer class="pt-4 w-screen text-black flex-0">
             <div class="flex flex-col justify-between items-center px-4 mx-auto max-w-4xl sm:flex-row">
                 <div class="italic text-center sm:text-left text-zinc-800">
-                    Want something like this for your own teaching? <a target="_blank"
-    rel="noopener noreferrer"
-    class="underline hover:text-azure-500"
-    href="https://rickhenry.dev/contact">Reach out on my main website</a>.
+                    Want something like this for your own teaching? <a target="_blank" rel="noopener noreferrer" class="underline hover:text-azure-500" href="https://rickhenry.dev/contact">Reach out on my main website</a>.
                 </div>
                 <div class="flex justify-center items-center py-4 px-4 sm:px-0">
-                    <a href="https://rickhenry.dev"
-                       title="Rick Henry Development"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        <svg viewBox="40.415 128.482 434.004 263.019"
-                             data-svgdocument=""
-                             id="_lozZXmrQ4Bjc2v8Jjk5tP"
-                             class="w-auto h-20"
-                             x="0"
-                             y="0"
-                             xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <a href="https://rickhenry.dev" title="Rick Henry Development" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="40.415 128.482 434.004 263.019" data-svgdocument="" id="_lozZXmrQ4Bjc2v8Jjk5tP" class="w-auto h-20" x="0" y="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <defs id="_OCOhh_n_vN0Rio0Fz3bQR" transform="matrix(0.775489330291748, 0, 0, 0.775489330291748, -81.92650604248047, 101.79067993164062)">
                             <linearGradient id="go_el7cf2a7g_25" x1="0%" y1="50%" x2="100%" y2="50%">
                             <stop offset="0" style="stop-color: rgb(76, 29, 149); stop-opacity: 1;" />
@@ -173,7 +160,7 @@
                 </div>
             </div>
         </footer>
-#}
+        {% endcomment %}
         {# Global javascript #}
         {% block extra_js %}{# Override this in templates to add extra javascript #}{% endblock %}
         <script>
